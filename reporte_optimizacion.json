@@ -1,0 +1,354 @@
+{
+  "metadata": {
+    "total_iteraciones": 10,
+    "iteraciones_validas": 9,
+    "iteraciones_invalidas": 1,
+    "mejor_score": -5.775618286526654,
+    "mejores_parametros": {
+      "clip_limit": 3.8,
+      "tile_size": 16
+    }
+  },
+  "vector_original": [
+    6.929211616516113,
+    128.05974159405994
+  ],
+  "iteraciones": [
+    {
+      "run": 1,
+      "valido": false,
+      "parametros": {
+        "clip_limit": 2.0,
+        "tile_size": 8
+      },
+      "razon_fallo": "Formula result (0) < 1: threshold inefectivo",
+      "formula_result": 0,
+      "analisis_ia": {
+        "analisis": "El intento inválido fue debido a que el resultado de la fórmula (clip_limit × tile_size²) / 256 fue menor que 1, lo que significa que el threshold fue inefectivo. Esto ocurrió porque el valor de tile_size era demasiado pequeño en relación con clip_limit. Se necesita un balance donde el resultado de la fórmula no solo sea mayor o igual a 1, sino también no exceda el valor de clip_limit para asegurar que realmente haya un recorte efectivo en el histograma.",
+        "razonamiento": "Para que la fórmula sea válida, se debe elegir un tile_size que, cuando se eleva al cuadrado y se multiplica por un clip_limit dentro del rango permitido, produzca un resultado que respete ambas limitaciones de la fórmula. Dado que tile_size debe ser una potencia de 2, y clip_limit está restringido entre 1.0 y 15.0, eligiendo un tile_size más grande permitirá un clip_limit menor y viceversa, creando un balance adecuado.",
+        "estrategia": "exploración",
+        "confianza": 0.85,
+        "parametros_propuestos": {
+          "clip_limit": 3.0,
+          "tile_size": 16
+        },
+        "formula_esperada": 3
+      }
+    },
+    {
+      "run": 2,
+      "valido": true,
+      "parametros": {
+        "clip_limit": 3.0,
+        "tile_size": 16
+      },
+      "formula_result": 3,
+      "vector_procesado": [
+        7.726484775543213,
+        715.3123354192106
+      ],
+      "vector_promedio": [
+        6.929211616516113,
+        128.05974159405994
+      ],
+      "metricas": {
+        "entropia": 7.726484775543213,
+        "varianza_laplaciano": 715.3123354192106,
+        "distancia_original": 587.2531350268448,
+        "distancia_promedio": 587.2531350268448,
+        "score": -587.2531350268448
+      },
+      "analisis_ia": {
+        "analisis": "El parámetro de Run 1 fue inválido porque el resultado de la fórmula fue menor que 1, lo que significa que el threshold fue inefectivo. En Run 2, el resultado de la fórmula fue igual a 3, lo cual es válido y dentro del rango permitido. Observamos que un clip_limit más alto y un tile_size más grande pueden ayudar a cumplir las restricciones, pero es importante mantener el balance para evitar distancias grandes al vector promedio. Las distancias válidas muestran que es posible obtener buenos resultados con tile_size medianos y clip_limit en un rango medio a alto. Un clip_limit más alto podría aumentar la entropía al permitir más contraste, mientras que un tile_size más grande podría aumentar la varianza en el Laplaciano debido a un procesamiento más grueso de la imagen.",
+        "razonamiento": "Proponiendo un clip_limit de 4.0 y tile_size de 16, mantenemos la fórmula dentro del rango requerido mientras exploramos un ajuste que podría reducir la distancia al promedio. Este ajuste sigue las reglas y mantiene un balance entre el clipping y la adaptabilidad del histograma.",
+        "estrategia": "exploración",
+        "confianza": 0.75,
+        "parametros_propuestos": {
+          "clip_limit": 4.0,
+          "tile_size": 16
+        },
+        "formula_esperada": 4
+      }
+    },
+    {
+      "run": 3,
+      "valido": true,
+      "parametros": {
+        "clip_limit": 4.0,
+        "tile_size": 16
+      },
+      "formula_result": 4,
+      "vector_procesado": [
+        7.822215557098389,
+        977.6640827360495
+      ],
+      "vector_promedio": [
+        7.726484775543213,
+        715.3123354192106
+      ],
+      "metricas": {
+        "entropia": 7.822215557098389,
+        "varianza_laplaciano": 977.6640827360495,
+        "distancia_original": 849.604810452102,
+        "distancia_promedio": 262.35176478266925,
+        "score": -262.35176478266925
+      },
+      "analisis_ia": {
+        "analisis": "Los parámetros inválidos en Run 1 fueron debido a que el valor de 'formula_result' fue 0, lo cual es menor que 1, haciendo que el threshold sea inefectivo. En los resultados válidos (Run 2 y Run 3), el 'formula_result' está dentro del rango aceptable. Observamos que a medida que aumenta el clip_limit, la distancia promedio disminuye, lo que sugiere que un mayor clip_limit podría permitir ajustar mejor el contraste y acercarse más al vector promedio. En cuanto a la entropía, un mayor clip_limit generalmente permite una distribución de intensidad más uniforme, mejorando el detalle en áreas oscuras y claras. El tile_size afecta la granularidad de la adaptación del histograma; un tamaño más pequeño puede aumentar la variancia del Laplaciano, lo que puede hacer que la imagen sea más aguda pero también más ruidosa.",
+        "razonamiento": "Dado que el mejor resultado actual tiene un clip_limit de 4.0 y un tile_size de 16, podemos intentar aumentar ligeramente el clip_limit para ver si eso mejora la distancia promedio sin violar las restricciones. Probar un tile_size diferente que aún cumpla con los límites podría ser beneficioso para explorar otros puntos en el espacio de parámetros.",
+        "estrategia": "exploración",
+        "confianza": 0.8,
+        "parametros_propuestos": {
+          "clip_limit": 4.5,
+          "tile_size": 16
+        },
+        "formula_esperada": 4
+      }
+    },
+    {
+      "run": 4,
+      "valido": true,
+      "parametros": {
+        "clip_limit": 4.5,
+        "tile_size": 16
+      },
+      "formula_result": 4,
+      "vector_procesado": [
+        7.847497463226318,
+        1100.0878493459427
+      ],
+      "vector_promedio": [
+        7.774350166320801,
+        846.48820907763
+      ],
+      "metricas": {
+        "entropia": 7.847497463226318,
+        "varianza_laplaciano": 1100.0878493459427,
+        "distancia_original": 972.0285415092512,
+        "distancia_promedio": 253.5996508174738,
+        "score": -253.5996508174738
+      },
+      "analisis_ia": {
+        "analisis": "En los intentos válidos, hemos visto que tanto el 'clip_limit' como el 'tile_size' cumplen con las restricciones de la fórmula crítica de validación. Notamos que al aumentar el clip_limit, la distancia al vector promedio ha disminuido. Los intentos inválidos muestran que un 'tile_size' pequeño puede resultar en un valor de 'formula_result' que no cumple con la condición de ser mayor o igual a 1, haciendo que el threshold sea inefectivo.",
+        "razonamiento": "Dado que un clip_limit más alto ha mostrado mejorar la distancia, y un tile_size de 16 ha sido consistente en los intentos válidos, proponemos un clip_limit ligeramente superior para explorar si puede reducir aún más la distancia al promedio. Esto sigue la tendencia observada en los intentos válidos, donde un clip_limit más alto correlaciona con una menor distancia.",
+        "estrategia": "explotación",
+        "confianza": 0.85,
+        "parametros_propuestos": {
+          "clip_limit": 5.0,
+          "tile_size": 16
+        },
+        "formula_esperada": 5
+      }
+    },
+    {
+      "run": 5,
+      "valido": true,
+      "parametros": {
+        "clip_limit": 5.0,
+        "tile_size": 16
+      },
+      "formula_result": 5,
+      "vector_procesado": [
+        7.873692035675049,
+        1209.6440295930443
+      ],
+      "vector_promedio": [
+        7.79873259862264,
+        931.021422500401
+      ],
+      "metricas": {
+        "entropia": 7.873692035675049,
+        "varianza_laplaciano": 1209.6440295930443,
+        "distancia_original": 1081.5847003769663,
+        "distancia_promedio": 278.6226171760266,
+        "score": -278.6226171760266
+      },
+      "analisis_ia": {
+        "analisis": "Los intentos inválidos, como Run 1, fallaron porque el resultado de la fórmula fue menor que 1, lo que indica un threshold inefectivo. Observamos que los resultados válidos tienen un tile_size constante de 16, que parece ser un factor importante para mantener el resultado de la fórmula dentro del rango permitido. La distancia promedio parece mejorar (disminuir) con un clip_limit entre 3.00 y 4.50, sugiriendo que mantener el clip_limit en este rango es favorable. En cuanto al impacto de clip_limit, un valor más alto permite más contraste, lo que puede aumentar la entropía. tile_size afecta la granularidad del contraste adaptativo, impactando en la varianza del Laplaciano, donde un tamaño más pequeño podría ofrecer mayor detalle, pero también aumenta el riesgo de un resultado inválido.",
+        "razonamiento": "Para mejorar la distancia al promedio, necesitamos mantener tile_size en 16 para asegurar un resultado de fórmula válido. Reducir el clip_limit ligeramente puede ayudar a explorar si hay una mejora en la distancia promedio. Probaremos un clip_limit de 3.50, ya que este valor no ha sido probado y está dentro del rango que mostró buenos resultados. Esto debe mantener el balance entre clipping efectivo y contraste adecuado.",
+        "estrategia": "explotación",
+        "confianza": 0.85,
+        "parametros_propuestos": {
+          "clip_limit": 3.5,
+          "tile_size": 16
+        },
+        "formula_esperada": 3
+      }
+    },
+    {
+      "run": 6,
+      "valido": true,
+      "parametros": {
+        "clip_limit": 3.5,
+        "tile_size": 16
+      },
+      "formula_result": 3,
+      "vector_procesado": [
+        7.773659706115723,
+        848.3340935775335
+      ],
+      "vector_promedio": [
+        7.817472457885742,
+        1000.6770742735617
+      ],
+      "metricas": {
+        "entropia": 7.773659706115723,
+        "varianza_laplaciano": 848.3340935775335,
+        "distancia_original": 720.2748469978587,
+        "distancia_promedio": 152.34298699614513,
+        "score": -152.34298699614513
+      },
+      "analisis_ia": {
+        "analisis": "El intento inválido de Run 1 con cl=2.00 y ws=8 falló porque el resultado de la fórmula fue 0, lo cual es menor que 1, haciendo al threshold inefectivo. En los resultados válidos, usando tile_size de 16, se obtuvieron distancias al promedio más bajas, sugiriendo que este tile_size es efectivo. Un clip_limit más bajo tiende a resultar en una menor distancia al promedio, pero debe ser lo suficientemente alto para cumplir con las restricciones de fórmula.",
+        "razonamiento": "Dado que los resultados válidos han utilizado un tile_size de 16, parece ser un buen punto de partida para minimizar la distancia al promedio. Bajando ligeramente el clip_limit podría ayudar a ajustar mejor la fórmula y minimizar la distancia al promedio, siempre y cuando las restricciones se cumplan.",
+        "estrategia": "explotación",
+        "confianza": 0.85,
+        "parametros_propuestos": {
+          "clip_limit": 3.25,
+          "tile_size": 16
+        },
+        "formula_esperada": 3
+      }
+    },
+    {
+      "run": 7,
+      "valido": true,
+      "parametros": {
+        "clip_limit": 3.25,
+        "tile_size": 16
+      },
+      "formula_result": 3,
+      "vector_procesado": [
+        7.758470058441162,
+        791.959110981905
+      ],
+      "vector_promedio": [
+        7.808709907531738,
+        970.2084781343561
+      ],
+      "metricas": {
+        "entropia": 7.758470058441162,
+        "varianza_laplaciano": 791.959110981905,
+        "distancia_original": 663.8998872895987,
+        "distancia_promedio": 178.24937423253903,
+        "score": -178.24937423253903
+      },
+      "analisis_ia": {
+        "analisis": "Los parámetros inválidos hasta ahora se deben a que el resultado de la fórmula crítica de validación CLAHE es menor que 1, lo que indica que el umbral es inefectivo. Esto ocurrió en Run 1, donde el clip_limit era 2.00 y el tile_size era 8, resultando en un valor de fórmula de 0. Para los resultados válidos, el tile_size utilizado ha sido consistentemente 16, lo que sugiere que este tamaño de tile es crucial para mantener la fórmula dentro de los límites requeridos. En cuanto a las distancias válidas, la distancia promedio más baja se obtuvo con un clip_limit de 3.50 y tile_size de 16, lo que indica que estos parámetros son efectivos para minimizar la distancia al vector promedio. Al aumentar el clip_limit, se observa un patrón de aumento en la distancia promedio, lo que sugiere una relación no lineal compleja entre el clip_limit y la distancia promedio. El clip_limit afecta la entropía al limitar el número de píxeles en un nivel de intensidad, mientras que el tile_size puede afectar la varianza del Laplaciano al determinar el tamaño de la región de procesamiento, influyendo así en el contraste y la textura de la imagen.",
+        "razonamiento": "Para optimizar aún más los parámetros, debemos considerar la relación entre clip_limit y tile_size que minimiza la distancia al promedio sin violar las restricciones de la fórmula crítica. Dado que el tile_size de 16 ha sido exitoso en mantener la fórmula válida, propongo mantenerlo y ajustar ligeramente el clip_limit para explorar su efecto en la distancia. Un clip_limit de 3.75 podría ofrecer un equilibrio entre los valores ya probados de 3.50 y 4.00, posiblemente proporcionando una distancia aún menor al promedio.",
+        "estrategia": "explotación",
+        "confianza": 0.85,
+        "parametros_propuestos": {
+          "clip_limit": 3.75,
+          "tile_size": 16
+        },
+        "formula_esperada": 3
+      }
+    },
+    {
+      "run": 8,
+      "valido": true,
+      "parametros": {
+        "clip_limit": 3.75,
+        "tile_size": 16
+      },
+      "formula_result": 3,
+      "vector_procesado": [
+        7.7980475425720215,
+        923.4663191134429
+      ],
+      "vector_promedio": [
+        7.800336599349976,
+        940.5002502756142
+      ],
+      "metricas": {
+        "entropia": 7.7980475425720215,
+        "varianza_laplaciano": 923.4663191134429,
+        "distancia_original": 795.407052041258,
+        "distancia_promedio": 17.03393131597559,
+        "score": -17.03393131597559
+      },
+      "analisis_ia": {
+        "analisis": "Los parámetros inválidos se deben principalmente al 'formula_result' que es menor que 1, lo que indica que el umbral es inefectivo. En los casos válidos, se observa que el tile_size es 16, y el clip_limit varía, lo que afecta directamente el resultado de la fórmula, manteniéndolo dentro de los límites requeridos. Las distancias válidas tienden a mejorar con un clip_limit más bajo, pero manteniendo la fórmula dentro del rango permitido. El clip_limit afecta la entropía al limitar el contraste, lo cual puede hacer que la imagen sea más uniforme. Un menor clip_limit tiende a reducir la distancia al promedio. El tile_size afecta la varianza Laplaciano al determinar el tamaño de las áreas locales de la imagen que se procesan, impactando así la nitidez general.",
+        "razonamiento": "Para minimizar la distancia al promedio, el clip_limit debe ser ajustado para que el resultado de la fórmula esté dentro del rango permisible, pero también lo suficientemente bajo para mejorar la uniformidad de la imagen. Dado que el mejor resultado hasta ahora tiene un clip_limit de 3.75 y un tile_size de 16, podemos intentar ajustar el clip_limit ligeramente hacia abajo para ver si mejora la distancia.",
+        "estrategia": "explotación",
+        "confianza": 0.85,
+        "parametros_propuestos": {
+          "clip_limit": 3.6,
+          "tile_size": 16
+        },
+        "formula_esperada": 3
+      }
+    },
+    {
+      "run": 9,
+      "valido": true,
+      "parametros": {
+        "clip_limit": 3.6,
+        "tile_size": 16
+      },
+      "formula_result": 3,
+      "vector_procesado": [
+        7.780501365661621,
+        867.4676782753925
+      ],
+      "vector_promedio": [
+        7.800009591238839,
+        938.0668315381612
+      ],
+      "metricas": {
+        "entropia": 7.780501365661621,
+        "varianza_laplaciano": 867.4676782753925,
+        "distancia_original": 739.4084267315206,
+        "distancia_promedio": 70.59915595806207,
+        "score": -70.59915595806207
+      },
+      "analisis_ia": {
+        "analisis": "Los intentos inválidos, como Run 1, fallaron porque el 'formula_result' era menor a 1, lo que significa que el umbral no era efectivo. Los intentos válidos con menor distancia al promedio muestran un patrón donde 'clip_limit' está alrededor de 3.75 con 'tile_size' de 16. Este valor de 'clip_limit' parece tener un equilibrio que permite cierta modificación en el contraste sin perder detalles. La distancia al promedio tiende a disminuir cuando el 'clip_limit' está en un rango de 3.5 a 3.75, lo que sugiere que este rango es óptimo para minimizar la distancia. Un 'clip_limit' más alto podría aumentar la entropía, mejorando el contraste general, pero también podría llevar a un clipping excesivo de los histogramas locales. Un 'tile_size' más grande podría reducir la varianza del Laplaciano, afectando la nitidez al calcular sobre áreas más grandes.",
+        "razonamiento": "Para optimizar la distancia, propongo ajustar ligeramente el 'clip_limit' a 3.80 con un 'tile_size' de 16. Este ajuste se basa en la observación de que los valores cercanos a 3.75 han sido óptimos. Este valor cumple con las reglas obligatorias de CLAHE y debería seguir reduciendo la distancia al vector promedio, ya que se mantiene dentro del rango de efectividad observado.",
+        "estrategia": "explotación",
+        "confianza": 0.9,
+        "parametros_propuestos": {
+          "clip_limit": 3.8,
+          "tile_size": 16
+        },
+        "formula_esperada": 3
+      }
+    },
+    {
+      "run": 10,
+      "valido": true,
+      "parametros": {
+        "clip_limit": 3.8,
+        "tile_size": 16
+      },
+      "formula_result": 3,
+      "vector_procesado": [
+        7.7980475425720215,
+        923.4663191134429
+      ],
+      "vector_promedio": [
+        7.797571063041687,
+        929.2419373803151
+      ],
+      "metricas": {
+        "entropia": 7.7980475425720215,
+        "varianza_laplaciano": 923.4663191134429,
+        "distancia_original": 795.407052041258,
+        "distancia_promedio": 5.775618286526654,
+        "score": -5.775618286526654
+      },
+      "analisis_ia": {
+        "analisis": "Los intentos inválidos han resultado en un 'formula_result' menor que 1, indicando un threshold inefectivo. Los intentos válidos han utilizado un 'tile_size' de 16, lo que resulta en un 'formula_result' de 3 para los valores de 'clip_limit' entre 3.25 y 3.80. El patrón en las distancias válidas muestra una mejora en la distancia al promedio a medida que el 'clip_limit' se aproxima a 3.80. Esto sugiere que un 'clip_limit' cercano a 3.80 con un 'tile_size' de 16 podría ser óptimo.",
+        "razonamiento": "Los parámetros propuestos se basan en la observación de que los intentos más cercanos al mejor resultado actual usaron un 'clip_limit' de alrededor de 3.80 y un 'tile_size' de 16. El 'clip_limit' afecta la entropía al limitar el número de píxeles en cada nivel de intensidad, mientras que el 'tile_size' afecta la varianza del Laplaciano al determinar el tamaño de los bloques sobre los que se aplica el ecualizador. Un 'tile_size' de 16 parece proporcionar un buen equilibrio entre detalle local y suavizado.",
+        "estrategia": "explotación",
+        "confianza": 0.95,
+        "parametros_propuestos": {
+          "clip_limit": 3.8,
+          "tile_size": 16
+        },
+        "formula_esperada": 3
+      }
+    }
+  ]
+}
