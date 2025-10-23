@@ -2,6 +2,8 @@
 
 This project implements a self-improving AI agent system to find the optimal parameters (`clip_limit`, `tile_size`) for the **CLAHE** (Contrast Limited Adaptive Histogram Equalization) algorithm for image enhancement.
 
+
+
 ## 1\. Problem Description
 
 Applying CLAHE requires tuning two key parameters: `clip_limit` and `tile_size`. Finding the optimal combination is a challenge because:
